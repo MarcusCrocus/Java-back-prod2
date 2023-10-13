@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import producto2_065_BearsJava.model.Clientes;
 import producto2_065_BearsJava.service.ClientesServ;
@@ -15,10 +16,10 @@ public class ClientesContr {
     @Autowired
     private ClientesServ clientesServ;
     // mostrar lista de clientes
-    @GetMapping("/")
+    @GetMapping("/clientTable")
     public String viewHomePage(Model model) {
         model.addAttribute("listaClientes", clientesServ.getAllClientes());
-        return "index";
+        return "client_table";
     }
     @GetMapping("/showNewClientForm")
     public String showNewClientForm(Model model){
@@ -32,6 +33,17 @@ public class ClientesContr {
     public String saveCliente(@ModelAttribute("cliente") Clientes cli ){
         //guardamos clientes en DDBB
         clientesServ.guardarCliente(cli);
-        return "redirect:/"; //viewHomePage
+        return "redirect:/clientTable"; //viewHomePage
+}
+@GetMapping("/showFormForUpdate/{id}")
+public String showFormForUpdate(@PathVariable (value = "id") int id, Model model){
+    Clientes cli = clientesServ.getClienteById(id);
+    model.addAttribute("cliente", cli);
+    return "update_cliente";
+}
+@GetMapping("/removeCliente/{id}")
+    public String removeCliente(@PathVariable(value = "id") int id){
+    this.clientesServ.removeClienteById(id);
+    return "redirect:/clientTable";
 }
 }

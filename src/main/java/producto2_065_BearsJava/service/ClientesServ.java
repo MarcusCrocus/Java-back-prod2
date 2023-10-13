@@ -9,4 +9,6 @@ public interface ClientesServ {
     List<Clientes> getAllClientes();
 
     void guardarCliente(Clientes cli);
+    Clientes getClienteById(int id);
+    void removeClienteById(int id);
 }
