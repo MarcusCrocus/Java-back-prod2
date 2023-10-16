@@ -19,14 +19,14 @@ public class ClientesContr {
     @GetMapping("/clientTable")
     public String viewHomePage(Model model) {
         model.addAttribute("listaClientes", clientesServ.getAllClientes());
-        return "client_table";
+        return "clientes/client_table";
     }
     @GetMapping("/showNewClientForm")
     public String showNewClientForm(Model model){
         // creamos atributo de modelo para vincular datos de formulario
         Clientes cli = new Clientes();
         model.addAttribute("cliente", cli);
-        return "new_cliente";
+        return "clientes/new_cliente";
     }
 @PostMapping("/saveCliente")
     //creamos meta-handler
@@ -39,7 +39,7 @@ public class ClientesContr {
 public String showFormForUpdate(@PathVariable (value = "id") int id, Model model){
     Clientes cli = clientesServ.getClienteById(id);
     model.addAttribute("cliente", cli);
-    return "update_cliente";
+    return "clientes/update_cliente";
 }
 @GetMapping("/removeCliente/{id}")
     public String removeCliente(@PathVariable(value = "id") int id){
