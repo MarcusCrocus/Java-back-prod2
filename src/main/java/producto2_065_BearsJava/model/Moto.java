@@ -1,24 +1,37 @@
 package producto2_065_BearsJava.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "moto")
-public class Moto extends Vehicles{
-    private String cilindraje;
+@Table(name="mt_vehiculos")
+@DiscriminatorValue("mt")
+@PrimaryKeyJoinColumn(name="mt_id")
+public class Moto extends Vehicles {
+    @Column(name = "cc")
+    protected Integer cc;
 
-    public Moto(int matricula, String marca, String modelo, String cilindraje) {
-        super(matricula, marca, modelo);
-        this.cilindraje = cilindraje;
+    @Column(name = "sidecar")
+    protected Boolean sidecar;
+
+
+    public Integer getCc() {
+        return cc;
     }
 
-    public String getCilindraje() {
-        return cilindraje;
+    public void setCc(Integer cc) {
+        this.cc = cc;
     }
 
-    public void setCilindraje(String cilindraje) {
-        this.cilindraje = cilindraje;
+    public Boolean getSidecar() {
+        return sidecar;
+    }
+
+    public void setSidecar(Boolean sidecar) {
+        this.sidecar = sidecar;
     }
 
     // se puede agregar métodos personalizados si es necesario

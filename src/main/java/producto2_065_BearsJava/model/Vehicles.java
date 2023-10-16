@@ -2,38 +2,40 @@ package producto2_065_BearsJava.model;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.InheritanceType.JOINED;
+
 @Entity
-@Table(name = "vehicles")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Vehicles {
+@Table (name = "vehiculos")
+@Inheritance(strategy=JOINED)
+public abstract class Vehicles {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int matricula;
-    @Column
-    private String marca;
-    @Column
-    private String modelo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @Column(name = "matricula")
+    protected String matricula;
+    @Column(name = "marca")
+    protected String marca;
+    @Column(name = "modelo")
+    protected String modelo;
 
-    public Vehicles() {
-
+    public long getId() {
+        return this.id;
     }
 
-    public Vehicles(int matricula, String marca, String modelo) {
-        this.matricula = matricula;
-        this.marca = marca;
-        this.modelo = modelo;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public int getMatricula() {
-        return matricula;
+    public String getMatricula() {
+        return this.matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
     public String getMarca() {
-        return marca;
+        return this.marca;
     }
 
     public void setMarca(String marca) {
@@ -41,7 +43,7 @@ public class Vehicles {
     }
 
     public String getModelo() {
-        return modelo;
+        return this.modelo;
     }
 
     public void setModelo(String modelo) {
