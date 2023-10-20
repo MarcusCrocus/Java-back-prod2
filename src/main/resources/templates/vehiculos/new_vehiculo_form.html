@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Vehiculo</title>
+</head>
+<body>
+    <div class="container">
+        <h1 th:if="${vehiculo.id == null}">Crear Vehiculo</h1>
+        <h1 th:unless="${vehiculo.id == null}">Modificar Vehiculo</h1>
+
+        <form action="#" th:action="@{/vehiculos/save}" th:object="${vehiculo}" method="POST">
+
+<!--             para poder editar el requistro -->
+            <input type="hidden" th:field="*{id}" th:value="${vehiculo.id}"/>
+
+<!--            campos-->
+            <div class="m-4">
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Matricula del Vehiculo</label>
+                    <div class="col-sm-4">
+                        <input type="text" th:field="*{matricula}" class="form-control mb-4" required
+                               placeholder="Introduzca la matricula del Vehiculo">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Marca del Vehiculo</label>
+                    <div class="col-sm-4">
+                        <input type="text" th:field="*{marca}" class="form-control mb-4" required
+                               placeholder="Introduzca la marca del Vehiculo">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Color del Vehiculo</label>
+                    <div class="col-sm-4">
+                        <input type="text" th:field="*{color}" class="form-control mb-4" required
+                               placeholder="Introduzca el color del Vehiculo">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2">Tipo de Vehiculo</label>
+                    <div class="col-sm-4">
+                        <select th:field="*{tipoVehiculo}" class="form-control" required>
+                            <option th:each="vehiculo : ${listaVehiculos}"
+                                    th:value="${vehiculo.id}"
+                                    th:text="${vehiculo.name}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-info"> Guardar Vehiculo</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
