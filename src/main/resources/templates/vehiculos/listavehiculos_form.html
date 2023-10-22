@@ -20,7 +20,7 @@
                 <th>ID</th>
                 <th>Tipo</th>
                 <th>Matricula</th>
-                <th>Marca</th>
+                <th>Motor</th>
                 <th>Color</th>
                 <th></th>
             </tr>
@@ -30,7 +30,7 @@
                 <td th:text="${vehiculo.id}"></td>
                 <td th:text="${vehiculo.tipoVehiculo.name}"></td>
                 <td th:text="${vehiculo.matricula}"></td>
-                <td th:text="${vehiculo.marca}"></td>
+                <td th:text="${vehiculo.motor}"></td>
                 <td th:text="${vehiculo.color}"></td>
                 <td>
                     <a th:href="@{'/vehiculos/edit/' + ${vehiculo.id}}">Editar</a>

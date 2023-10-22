@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import producto2_065_BearsJava.model.TipoVehiculo;
@@ -39,23 +38,31 @@ public class TipoVehiculoContr {
     }
     @PostMapping("/tipodevehiculos/save")
     public String saveTipoVehiculo(TipoVehiculo vh){
-        repo.save(vh);
+        TipoVehiculo existingTipoVehiculo = repo.findByName(vh.getName());
+
+        if (existingTipoVehiculo != null) {
+            // Tipo de vehículo ya existe, actualiza sus datos en lugar de crear uno nuevo
+            existingTipoVehiculo.setName(vh.getName());
+            repo.save(existingTipoVehiculo);
+        } else {
+            // No existe un tipo de vehículo con ese nombre, puedes guardar el nuevo
+            repo.save(vh);
+        }
+
         return "redirect:/tipovehiculos";
     }
 
 // Para poder editar reguistro con tipo de vehiculo
 
-@GetMapping("/tipovehiculos/edit/{id}")
-public String showEditTipoVehiculoForm(@PathVariable("id") Long id, Model model) {
-    // Find the TipoVehiculo by its ID
-    TipoVehiculo tipoVehiculo = repo.findById(Math.toIntExact(id)).orElse(null);
-
-    if (tipoVehiculo != null) {
-        model.addAttribute("tipovehiculo", tipoVehiculo);
-        return "vehiculos/tipovehiculo_form"; // Updated to reference tipovehiculo_form.html
-    } else {
-        // Handle the case where the TipoVehiculo with the given ID doesn't exist
-        return "redirect:/tipovehiculos";
+    @GetMapping("/tipovehiculos/edit/{id}")
+    public String showEditTipoVehiculoForm(@PathVariable("id") int id, Model model) {
+        TipoVehiculo tipoVehiculo = repo.findById(id).orElse(null);
+        if (tipoVehiculo != null) {
+            model.addAttribute("tipovehiculo", tipoVehiculo);
+            return "vehiculos/tipovehiculo_form";
+        } else {
+            // Handle the case where TipoVehiculo with the given ID does not exist
+            return "redirect:/tipovehiculos";
+        }
     }
-}
 }

@@ -13,8 +13,8 @@ public class Vehiculo {
     private long id;
     @Column(name = "matricula", nullable = false, unique = true)
     private String matricula;
-    @Column(name = "marca")
-    private String marca;
+    @Column(name = "motor")
+    private long motor;
     @Column(name = "color")
     private String color;
     @ManyToOne
@@ -37,12 +37,12 @@ public class Vehiculo {
         this.matricula = matricula;
     }
 
-    public String getMarca() {
-        return marca;
+    public long getMotor() {
+        return motor;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setMotor(long motor) {
+        this.motor = motor;
     }
 
     public String getColor() {

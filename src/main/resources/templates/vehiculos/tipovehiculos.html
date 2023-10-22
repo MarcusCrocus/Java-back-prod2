@@ -27,9 +27,7 @@
                 <td th:text="${tipovehiculos.id}"></td>
                 <td th:text="${tipovehiculos.name}"></td>
                 <td>
-                    <form th:action="@{'/tipovehiculos/edit/' + ${tipovehiculos.id}}" method="get">
-                        <button type="submit">Editar</button>
-                    </form>
+                    <a th:href="@{'/tipovehiculos/edit/' + ${tipovehiculos.id}}">Editar</a>
                 </td>
             </tr>
             </tbody>
