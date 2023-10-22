@@ -18,7 +18,7 @@
     <div th:unless="${tipovehiculo.id == null}"><h1>Modificar tipo de Vehiculo</h1></div>
 
     <form th:action="@{/tipodevehiculos/save}" th:object="${tipovehiculo}" method="post">
- <input type="hidden" th:value="${tipovehiculo.id}"/>
+        <input type="hidden" th:value="${tipovehiculo.id}"/>
         <div class="m-4">
             <div class="form-group row">
                 <label class="col-form-label col-sm-2">Tipo de vehiculo</label>

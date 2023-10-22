@@ -9,6 +9,9 @@ public class TipoVehiculo {
     private int id;
     @Column(length = 15, nullable = false,unique = true)
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "marca_id")
+    private MarcaVehiculo marca;
 
     public long getId() {
 
@@ -26,4 +29,13 @@ public class TipoVehiculo {
     public void setName(String name) {
         this.name = name;
     }
+
+    public MarcaVehiculo getMarca() {
+        return marca;
+    }
+
+    public void setMarca(MarcaVehiculo marca) {
+        this.marca = marca;
+    }
+
 }
