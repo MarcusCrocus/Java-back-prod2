@@ -18,7 +18,7 @@ public class TipoVehiculo {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)  {
         this.id = id;
     }
 
@@ -38,4 +38,8 @@ public class TipoVehiculo {
         this.marca = marca;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

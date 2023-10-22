@@ -65,4 +65,5 @@ public class TipoVehiculoContr {
             return "redirect:/tipovehiculos";
         }
     }
+
 }

@@ -31,6 +31,12 @@ public class MarcaContr {
     @PostMapping("marcas/save")
     public String saveMarca(MarcaVehiculo marcaVehiculo){
         marcaVehiculoRepo.save(marcaVehiculo);
-        return "redirect:/listamarcas_form";
+        return "redirect:/";
+    }
+    @GetMapping("/marcas")
+    public String listaTipoVehiculos(Model model){
+       List<MarcaVehiculo> listMarcas = marcaVehiculoRepo.findAll();
+       model.addAttribute("listMarcas", listMarcas);
+        return "marca/listamarca_form";
     }
 }
