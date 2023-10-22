@@ -33,6 +33,7 @@
                 <td th:text="${vehiculo.motor}"></td>
                 <td th:text="${vehiculo.color}"></td>
                 <td>
+                    <!--    TODO: dar estilos a los botones-->
                     <a th:href="@{'/vehiculos/edit/' + ${vehiculo.id}}">Editar</a>
                     <a th:href="@{'/vehiculos/remove/' + ${vehiculo.id}}">Borrar</a>
                 </td>

@@ -36,6 +36,7 @@ public class TipoVehiculoContr {
             return "vehiculos/tipovehiculo_form";
 
     }
+    //TODO: no funciona la parte de editar tipo de vehiculo, se esta creando nuevo reguistro de vehiculo
     @PostMapping("/tipodevehiculos/save")
     public String saveTipoVehiculo(TipoVehiculo vh){
         TipoVehiculo existingTipoVehiculo = repo.findByName(vh.getName());
@@ -61,9 +62,9 @@ public class TipoVehiculoContr {
             model.addAttribute("tipovehiculo", tipoVehiculo);
             return "vehiculos/tipovehiculo_form";
         } else {
-            // Handle the case where TipoVehiculo with the given ID does not exist
+            //TODO: Manejar el caso donde el TipoVehiculo con el ID dado no existe
             return "redirect:/tipovehiculos";
         }
     }
-
+    //TODO: añadir botton de eliminar
 }

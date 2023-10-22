@@ -57,7 +57,7 @@ public class VehiculosContr {
     }
     @GetMapping("/vehiculos/remove/{id}")
     public String removeVehiculo(@PathVariable("id") Long id) {
-        // Remove the Vehiculo by its ID directly from the repository
+        // Elimina el Vehículo por su ID directamente del repositorio
         vehiculosRepo.deleteById(id);
 
         return "redirect:/vehiculos";
