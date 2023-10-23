@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import producto2_065_BearsJava.model.MarcaVehiculo;
 import producto2_065_BearsJava.model.TipoVehiculo;
@@ -33,6 +35,8 @@ public class MarcaContr {
         marcaVehiculoRepo.save(marcaVehiculo);
         return "redirect:/";
     }
+
+
     @GetMapping("/marcas")
     public String listaTipoVehiculos(Model model){
        List<MarcaVehiculo> listMarcas = marcaVehiculoRepo.findAll();
@@ -40,4 +44,15 @@ public class MarcaContr {
         return "marca/listamarca_form";
     }
     //TODO: add botton editar
+    @GetMapping("/marcas/edit/{id}")
+    public String editarMarca(@PathVariable("id") int id, Model model){
+
+        MarcaVehiculo marcaVehiculo = marcaVehiculoRepo.findById(id).get();
+        model.addAttribute("marca", marcaVehiculo);
+
+        List<TipoVehiculo> tipoVehiculoList = tipoVehiculosRepo.findAll();
+        model.addAttribute("tipoVehiculoList", tipoVehiculoList);
+
+        return "marca/marca_form";
+    }
 }

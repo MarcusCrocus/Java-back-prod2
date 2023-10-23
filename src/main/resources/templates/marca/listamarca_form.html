@@ -20,18 +20,24 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Tipo de Vehiculo</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-            <tr th:each="macravehiculo : ${listMarcas}">
-                <td th:text="${macravehiculo.id}"></td>
-                <td th:text="${macravehiculo.name}"></td>
+            <tr th:each="marcavehiculo : ${listMarcas}">
+                <td th:text="${marcavehiculo.id}"></td>
+                <td th:text="${marcavehiculo.name}"></td>
                 <td>
-                    <span th:each="tipo, iterStat : ${macravehiculo.tipoVehiculoList}">
+                    <span th:each="tipo, iterStat : ${marcavehiculo.tipoVehiculoList}">
                         <span th:text="${tipo.name}"></span>
                         <span th:if="${!iterStat.last}">, </span>
                     </span>
                 </td>
+                <td>
+                    <a class="h4" th:href="@{'/marcas/edit/' + ${marcavehiculo.id}}" >Editar</a>
+                    <a class="h4" th:href="@{'/marcas/remove/'+ ${marcavehiculo.id}}" > Borrar </a>
+                </td>
+
             </tr>
             </tbody>
         </table>

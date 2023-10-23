@@ -13,7 +13,7 @@ public class TipoVehiculo {
     @JoinColumn(name = "marca_id")
     private MarcaVehiculo marca;
 
-    public long getId() {
+    public int getId() {
 
         return id;
     }

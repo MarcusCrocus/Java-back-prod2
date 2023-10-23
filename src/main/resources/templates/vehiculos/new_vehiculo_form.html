@@ -31,7 +31,7 @@
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Motor del Vehiculo</label>
                     <div class="col-sm-4">
-                        <input type="text" th:field="*{motor}" class="form-control mb-4" required
+                        <input type="number" step="0.1" th:field="*{motor}" class="form-control mb-4" required
                                placeholder="Introduzca cc motor del Vehiculo">
                     </div>
                 </div>
@@ -43,19 +43,24 @@
                                placeholder="Introduzca el color del Vehiculo">
                     </div>
                 </div>
-
+<!--                añadimos al forma variable tipoVehiculo en la classe Vehiculo / para cada-->
+<!--                objeto creado se asigraria ID y nombre del tipo dentro de la tabla listavehiculos_form-->
                 <div class="form-group row">
                     <label class="col-form-label col-sm-2">Tipo de Vehiculo</label>
                     <div class="col-sm-4">
                         <select th:field="*{tipoVehiculo}" class="form-control" required>
-                            <option th:each="vehiculo : ${listaVehiculos}"
-                                    th:value="${vehiculo.id}"
-                                    th:text="${vehiculo.name}"></option>
+                            <th:block th:each="vh : ${listaVehiculos}">
+                                <option th:value="${vh.id}"
+                                        th:text="${vh.name}">
+                                </option>
+                            </th:block>
                         </select>
                     </div>
                 </div>
+                <div class="col-sm-4 offset-sm-5">
+                    <button type="submit" class="btn btn-primary py-2 my-4"> Guardar Vehiculo</button>
+                </div>
 
-                <button type="submit" class="btn btn-info"> Guardar Vehiculo</button>
             </div>
         </form>
     </div>

@@ -23,10 +23,9 @@ public class VehiculosContr {
 
     @GetMapping("/vehiculos/new")
     public String showVehiculoNewFrom(Model model) {
+        List<TipoVehiculo> listaVehiculos =  tipoVehiculosRepo.findAll();
 
         model.addAttribute("vehiculo", new Vehiculo());
-
-        List<TipoVehiculo> listaVehiculos =  tipoVehiculosRepo.findAll();
         model.addAttribute("listaVehiculos", listaVehiculos);
         return "vehiculos/new_vehiculo_form";
     }
