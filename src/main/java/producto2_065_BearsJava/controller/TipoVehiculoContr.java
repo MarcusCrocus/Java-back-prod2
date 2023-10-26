@@ -55,5 +55,11 @@ public class TipoVehiculoContr {
         }
         return "vehiculos/tipovehiculo_form";
     }
+
+    @GetMapping("/tipovehiculos/remove/{id}")
+    public String removeTipoVehiculo(@PathVariable("id") int id){
+        repo.deleteById(id);
+        return "redirect:/tipovehiculos";
+    }
 }
 

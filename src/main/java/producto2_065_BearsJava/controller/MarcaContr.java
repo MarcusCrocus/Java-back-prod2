@@ -55,4 +55,10 @@ public class MarcaContr {
 
         return "marca/marca_form";
     }
+    @GetMapping("/marcas/remove/{id}")
+    public String removeMarca(@PathVariable("id") int id){
+        marcaVehiculoRepo.deleteById(id);
+        return "redirect:/marcas";
+    }
+
 }
