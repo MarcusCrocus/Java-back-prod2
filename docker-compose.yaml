@@ -1,9 +1,0 @@
-version: '24.0.6'
-services:
-  apigateway:
-    build:
-      context: .
-        dockerfile: Dockerfile
-      restart: always
-        - 9000:9000
-
